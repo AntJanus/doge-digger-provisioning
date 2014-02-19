@@ -29,12 +29,13 @@ make
 #CPU limiter
 apt-get install cpulimit
 
-#limit to 15%
-cpulimit -e minerd -l 15
 
 #run miner
 (
 cd /var/www/digger
 ##run process in background
-nohup ./minerd --url=poolurl:port --userpass=WebLogin.YourWorker:Password
+nohup ./minerd --url=poolurl:port --userpass=WebLogin.YourWorker:Password &
 )
+
+#limit to 15%
+cpulimit -e minerd -l 15
