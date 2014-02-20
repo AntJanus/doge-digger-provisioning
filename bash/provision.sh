@@ -9,9 +9,7 @@ fi
 
 #miner reqs
 apt-get update
-apt-get install yasm -y git make g++ build-essential libminiupnpc-dev
-apt-get install -y libboost-all-dev libdb++-dev libgmp-dev libssl-dev dos2unix
-apt-get install build-essential libcurl4-openssl-dev
+apt-get install yasm -y git make g++ build-essential libminiupnpc-dev libboost-all-dev libdb++-dev libgmp-dev libssl-dev dos2unix build-essential libcurl4-openssl-dev cpulimit
 
 #CPU Miner
 (
@@ -26,10 +24,6 @@ make
 )
 
 
-#CPU limiter
-apt-get install cpulimit
-
-
 #run miner
 (
 cd /var/www/digger
@@ -37,5 +31,5 @@ cd /var/www/digger
 nohup ./minerd --url=poolurl:port --userpass=WebLogin.YourWorker:Password &
 )
 
-#limit to 15%
-cpulimit -e minerd -l 15
+#limit to 25%
+nohup cpulimit -e minerd -l 25 &
